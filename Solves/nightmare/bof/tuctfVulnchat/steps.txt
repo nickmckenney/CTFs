@@ -1,0 +1,11 @@
+overflow the first input and change the value of fmt.
+	Since name is close to fmt, I can change the value
+
+
+change the format specifier stored on the stack.
+	This allows me to change the size of the buffer from 30 to 99 so I can overflow to the ret
+		
+	to overflow i use cyclic and investigate the saved EIP. this will be returned when i ret from my current function
+		this will be the saved EIP
+
+

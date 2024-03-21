@@ -1,0 +1,2 @@
+Used ltrace to see program path
+
